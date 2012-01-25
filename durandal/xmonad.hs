@@ -74,7 +74,10 @@ main = xmonad $ ewmh $ gnomeConfig
        , ("M-S-c",     spawn "gnome-session-save --kill")
        , ("M-S-l",     spawn "gnome-screensaver-command -l")
        , ("M-S-s",     spawn "scrot")
-       ]
+       ] `additionalKeys`
+       [ ((mod4Mask .|. mask, key), f sc) -- have to use mod4Mask explicitly instead of the previously defined modMask
+             | (key, sc) <- zip [xK_q, xK_w, xK_e] [0..]
+             , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)] ]
     where
       myManageHook = composeAll . concat $
                      [ [ className   =? c --> doFloat           | c <- myFloats]
