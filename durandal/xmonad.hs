@@ -74,6 +74,11 @@ main = xmonad $ ewmh $ gnomeConfig
        , ("M-S-c",     spawn "gnome-session-save --kill")
        , ("M-S-l",     spawn "gnome-screensaver-command -l")
        , ("M-S-s",     spawn "scrot")
+       , ("M-`",       gnomeRun) -- This is just a workaround for a
+                                 -- gnome-settings-daemon bug
+                                 -- (https://bugs.launchpad.net/ubuntu/+source/gnome-settings-daemon/+bug/694910
+                                 -- and
+                                 -- https://bugzilla.gnome.org/show_bug.cgi?id=651571)
        ] `additionalKeys`
        [ ((mod4Mask .|. mask, key), f sc) -- have to use mod4Mask explicitly instead of the previously defined modMask
              | (key, sc) <- zip [xK_w, xK_e] [0..]
