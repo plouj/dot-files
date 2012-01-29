@@ -76,7 +76,7 @@ main = xmonad $ ewmh $ gnomeConfig
        , ("M-S-s",     spawn "scrot")
        ] `additionalKeys`
        [ ((mod4Mask .|. mask, key), f sc) -- have to use mod4Mask explicitly instead of the previously defined modMask
-             | (key, sc) <- zip [xK_q, xK_w, xK_e] [0..]
+             | (key, sc) <- zip [xK_w, xK_e] [0..]
              , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)] ]
     where
       myManageHook = composeAll . concat $
