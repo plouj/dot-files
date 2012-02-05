@@ -14,7 +14,7 @@ import XMonad.Hooks.FadeInactive
 import qualified XMonad.StackSet as W -- to shift and float windows
 import qualified Data.Map        as M
 import XMonad.Hooks.Place
-import XMonad.Util.EZConfig(additionalKeysP, additionalKeys)
+import XMonad.Util.EZConfig(additionalKeysP, additionalKeys, removeKeysP)
 import System
 import System.Exit(exitWith)
 import XMonad.Actions.PhysicalScreens -- http://xmonad.org/xmonad-docs/xmonad-contrib/src/XMonad-Actions-PhysicalScreens.html
@@ -83,6 +83,7 @@ main = xmonad $ ewmh $ gnomeConfig
        [ ((mod4Mask .|. mask, key), f sc) -- have to use mod4Mask explicitly instead of the previously defined modMask
              | (key, sc) <- zip [xK_w, xK_e] [0..]
              , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)] ]
+       `removeKeysP` ["M-p"]
     where
       myManageHook = composeAll . concat $
                      [ [ className   =? c --> doFloat           | c <- myFloats]
