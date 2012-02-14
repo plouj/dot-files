@@ -1,0 +1,12 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[user]
+	name = Michael Ploujnikov
+	email = michael.ploujnikov@oracle.com
+[alias]
+	up = pull --rebase
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
