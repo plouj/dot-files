@@ -86,19 +86,7 @@ main = xmonad $ ewmh $ gnomeConfig
        `removeKeysP` ["M-p"]
     where
       myManageHook = composeAll . concat $
-                     [ [ className   =? c --> doFloat           | c <- myFloats]
-                     , [ title       =? t --> doFloat           | t <- myOtherFloats]
-                     , [ className   =? c --> doF (W.shift "1") | c <- webApps]
-                     , [ title       =? c --> doF (W.shift "2") | c <- termApps]
-                     , [ className   =? c --> doF (W.shift "3") | c <- ircApps]
-                     , [ title       =? c --> doF (W.shift "6") | c <- schedApps]
-                     , [ className   =? c --> doF (W.shift "6") | c <- schederApps]
+                     [ [ className   =? c --> doF (W.shift "1") | c <- webApps]
                      , [composeOne [ isFullscreen -?> doFullFloat ]]
                      ]
-      myFloats      = ["MPlayer", "Gimp", "Smplayer", "Kget", "kget"]
-      myOtherFloats = ["alsamixer"]
-      termApps      = ["@localhost"] -- open on desktop 1
-      webApps       = ["Firefox", "Opera", "Akregator", "chrome", "Chrome"] -- open on desktop 2
-      ircApps       = ["Ksirc", "krusader", "Krusader", "xchat"]                -- open on desktop 3 
-      schedApps     = ["scheduler"]                -- open on desktop 7
-      schederApps   = ["kget"]                -- open on desktop 7
+      webApps       = ["Firefox", "chrome", "Chrome"] -- open on desktop 1
